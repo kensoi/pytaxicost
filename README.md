@@ -21,4 +21,4 @@ python3 app.py
 
 
 ## Использованные библиотеки
-[PyConvertNum](https://github.com/kensoidev/pyconvertnum) -- Программа, конвертирующая числа в пределах [1, 999999] из цифровой в словесную форму
+[PyConvertNum](https://github.com/kensoidev/pyconvertnum) - Программа, конвертирующая числа в пределах [1, 999999] из цифровой в словесную форму
