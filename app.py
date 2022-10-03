@@ -34,18 +34,23 @@ def main(N, first_line, second_line):
         for i in range(N)]
 
     result.sort(key=lambda x: x["sotrudnik_id"])
-
+    print("Отсортированные пары:\n")
     for i in range(N):
-        print("Сотрудник №{sotrudnik_id} должен ехать на такси с №{taxi_id} по стоимости {taxi_cost} руб.".format(
+        print("Номер такси для сотрудника №{sotrudnik_id}: {taxi_id}".format(
             **result[i]
         ))
-        print(f"({convert_to_word(result[i]['taxi_cost'])})")
-        print()
+
+    print()
+    total_sum = sum(map(lambda x: x['taxi_cost'], result))
+    total_sum_word = convert_to_word(total_sum)
+
+    print(f'Общая стоимость развоза всех сотрудников составляет {total_sum} р.')
+    print(f'Сумма словами: {total_sum_word}')
     
 
 if __name__ == "__main__":
     N = int(input("Введите N >> "))
-    first_line = get_int("Введите первые N чисел >> ", N) # расстояния для сотрудников
-    second_line = get_int("Введите вторые N чисел >> ", N) # цена за 1 км езды
+    first_line = get_int("Введите первые N чисел (расстояние до дома сотрудника) >> ", N) # расстояния для сотрудников
+    second_line = get_int("Введите вторые N чисел (тариф такси за 1 км.) >> ", N) # цена за 1 км езды
     print()
     main(N, first_line, second_line)
