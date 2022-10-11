@@ -4,21 +4,23 @@
 from pyconvertnum import convert_to_word
 
 def get_int(text: str = "Введите числа через пробел", value_count: int = None) -> list[int]:
-    resource = list(map(int, input(text).split(" ")))
+    while True:
+        resource = list(map(int, input(text).split(" ")))
 
-    if value_count:
-        if isinstance(value_count, int):
-            if value_count < len(resource):
-                resource = resource[:value_count]
+        if value_count:
+            if not isinstance(value_count, int):
+                print("Количество N должно быть указано как целое число, либо NoneType")
+                continue
+            
+            if value_count != len(resource):
+                print("Длина указанного ряда чисел не соответствует числу N")
+                continue
 
-        else:
-            raise TypeError("value_count should be int or NoneType")
-
-    return resource
+        return resource
 
 
 def fix_index(list_to_fix):
-    return [{"index": i, "value": list_to_fix[i]} for i in range(len(list_to_fix))]
+    return list(map(lambda i: {"index": i, "value": list_to_fix[i]}, range(len(list_to_fix))))
 
 
 def main(N, first_line, second_line):
@@ -49,7 +51,7 @@ def main(N, first_line, second_line):
     
 
 if __name__ == "__main__":
-    N = int(input("Введите N >> "))
+    N = int(input("Введите целое число N >> "))
     first_line = get_int("Введите первые N чисел (расстояние до дома сотрудника) >> ", N) # расстояния для сотрудников
     second_line = get_int("Введите вторые N чисел (тариф такси за 1 км.) >> ", N) # цена за 1 км езды
     print()
